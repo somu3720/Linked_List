@@ -1,0 +1,92 @@
+class MyHashSet {
+    
+    List <Integer> list;
+    public MyHashSet() {
+        list = new ArrayList();
+    }
+    
+    public void add(int key) {
+        if(list.contains(key)==false)
+            list.add(key);
+    }
+    
+    public void remove(int key) {
+        if(list.contains(key))
+            list.remove(list.indexOf(key));
+    }
+    
+    public boolean contains(int key) {
+       return list.contains(key); 
+    }
+
+    
+}
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet obj = new MyHashSet();
+ * obj.add(key);
+ * obj.remove(key);
+ * boolean param_3 = obj.contains(key);
+ */
+ 
+ ....................................................................................
+ 
+ class MyHashSet {
+    private final int max_value = 1000000;
+    private final int Array_size = 100;
+    private List<List<Integer>> parentlist;
+    
+    
+    
+    public MyHashSet() {
+       parentlist = new ArrayList<>(Array_size);
+        for(int i = 0; i < Array_size; i++)
+            parentlist.add(null);
+        
+    }
+    
+    public void add(int key) {
+        int index = key % Array_size;
+        
+        List<Integer> childlist = parentlist.get(index);
+        if(childlist==null)
+        {
+            List<Integer> list = new LinkedList<>();
+            list.add(key);
+            parentlist.set(index,list);
+        }
+        
+        else{
+            if(!childlist.contains(key))
+            {
+                childlist.add(key);
+            }
+        }
+    }
+    
+    public void remove(int key) {
+        
+        int index = key % Array_size;
+        List<Integer> childlist = parentlist.get(index);
+        if(childlist != null)
+            childlist.remove(Integer.valueOf(key));
+    }
+    
+    public boolean contains(int key) {
+        int index = key % Array_size;
+        List<Integer> childlist = parentlist.get(index);
+        
+        return childlist!= null && childlist.contains(key);
+    }
+
+    
+}
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet obj = new MyHashSet();
+ * obj.add(key);
+ * obj.remove(key);
+ * boolean param_3 = obj.contains(key);
+ */
