@@ -29,3 +29,87 @@ class MyHashMap {
  * int param_2 = obj.get(key);
  * obj.remove(key);
  */
+ 
+ ..................................................
+ 
+ class MyHashMap {
+    
+    LinkedList<Entry>[] map;
+    public static int siz = 769;  // prime no
+
+    public MyHashMap() {
+        map = new LinkedList[siz];
+    }
+    
+    public void put(int key, int value) {
+        
+        int bucket = key % siz;
+        if(map[bucket] == null)
+        {
+            map[bucket] = new LinkedList<Entry>();
+            map[bucket].add(new Entry(key,value));
+            
+        }
+        else
+        {
+            for(Entry e: map[bucket])
+            {
+                if(e.key == key)
+                {
+                    e.val = value;
+                    return;
+                }
+                
+            }
+           map[bucket].add(new Entry(key,value));
+        }
+        
+        
+    }
+    
+    public int get(int key) {
+        
+        int bucket = key % siz;
+        LinkedList<Entry> entries = map[bucket];
+        if(entries == null)
+            return -1;
+        
+        for(Entry e : entries)
+            if(e.key == key)
+                return e.val;
+        
+        return -1;
+    }
+    
+    public void remove(int key) {
+        int bucket = key % siz;
+        Entry toRemove = null;
+        if(map[bucket]==null)
+            return;
+        
+        else
+        {
+            for(Entry e : map[bucket])
+            {
+                if(e.key == key)
+                    toRemove = e;
+            }
+            if(toRemove == null)
+                return;
+            map[bucket].remove(toRemove);
+                
+        }
+    }
+}
+
+class Entry
+{
+    public int key;
+    public int val;
+    
+    public Entry(int key, int val)
+    {
+        this.key = key;
+        this.val = val;
+    }
+}
