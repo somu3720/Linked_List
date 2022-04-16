@@ -54,3 +54,5 @@ class Solution {
         return head;
     }
 }
+
+// https://leetcode.com/problems/remove-duplicates-from-an-unsorted-linked-list/discuss/1349722/Java-Easy-to-understand-and-with-comments-or-Hashmap-and-iterators
