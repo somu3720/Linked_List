@@ -43,3 +43,5 @@ class Solution {
         return dummy.next;
     }
 }
+
+// https://www.youtube.com/watch?v=b8_ZINq9yhA
